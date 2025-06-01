@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JEE Rank Predictor</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f0f2f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 100px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+    }
+    #result {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>JEE Rank Predictor</h1>
+  <input type="number" id="percentile" placeholder="Enter your percentile" min="0" max="100">
+  <button onclick="predictRank()">Predict Rank</button>
+  <p id="result"></p>
+
+  <script>
+    function predictRank() {
+      let percentile = parseFloat(document.getElementById("percentile").value);
+      if (isNaN(percentile) || percentile > 100 || percentile < 0) {
+        document.getElementById("result").innerText = "Please enter a valid percentile.";
+        return;
+      }
+      let rank = Math.round((100 - percentile) * 120000); // Approx logic
+      document.getElementById("result").innerText = "Estimated Rank: " + rank;
+    }
+  </script>
+</body>
+</html>
